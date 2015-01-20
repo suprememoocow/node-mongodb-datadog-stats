@@ -10,12 +10,12 @@ npm install mongodb-datadog-stats --save
 var mongodb = require('mongodb');
 var mongoDogStats = require('mongodb-datadog-stats');
 
-
 mongoDogStats.install(mongodb, {
-  dogstatsClient: dogstatsClient, // Instance of `node-dogstatsd`.StatsD
-                                  // if not specified, creates a new client which will communicate with
-                                  // 127.0.0.1:8125
-  metric: 'mongodb.query'         // Default is 'mongodb.client.query'
+  statsClient: statsClient, // Instance of `node-statsd` client
+                            // if not specified, creates a new client which will communicate with
+                            // 127.0.0.1:8125
+  metric: 'mongodb.query'   // Metric name (default 'mongodb.client.query')
+  sampleRate: 0.5           // Sample rate to use (default 1)
 });
 
 // All mongodb query times will be recorded as histograms to
